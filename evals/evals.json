@@ -1,0 +1,57 @@
+{
+  "skill_name": "frontend-demo",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I'm building a Next.js AI chat app for a hackathon. It uses the Vercel AI SDK with useChat() and calls /api/chat which uses OpenAI streaming. I need to record a 2 min demo. The flow is: 1) User types 'What are the best hiking trails in Colorado?' 2) AI streams back a detailed response with trail names and descriptions 3) User clicks 'Save to favorites' and gets a success message. Can you set up a demo environment so I don't have to worry about API latency during recording?",
+      "expected_output": "A demo/ folder with: mock server using OpenAI streaming format, fixtures for the chat response and save endpoint, patched Next.js frontend pointing to localhost:3001, package.json with concurrently, and a README with run instructions.",
+      "files": [],
+      "assertions": [
+        {"name": "has-server-js", "description": "Output includes a server.js or equivalent mock server file"},
+        {"name": "has-demo-config", "description": "Output includes a demo-config.json with structured step definitions"},
+        {"name": "has-streaming-fixture", "description": "Output includes a text fixture for the streaming chat response"},
+        {"name": "has-static-fixture", "description": "Output includes a JSON fixture for the save-to-favorites endpoint"},
+        {"name": "has-package-json", "description": "Output includes a package.json with a start script"},
+        {"name": "has-readme", "description": "Output includes a README.md with run instructions"},
+        {"name": "streaming-format-correct", "description": "Server or config specifies OpenAI-compatible streaming format"},
+        {"name": "single-start-command", "description": "Can be started with a single command (npm start or similar)"},
+        {"name": "realistic-response-content", "description": "Streaming fixture contains realistic hiking trail content"}
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "I have a Vue 3 app that's a recipe finder. It hits two REST endpoints: GET /api/recipes?q=... for search results and POST /api/recipes/:id/rate for submitting ratings. No streaming, just normal JSON responses. I need to demo this at a hackathon tomorrow and the backend isn't reliable. Demo flow: 1) User searches for 'pasta carbonara' 2) Results appear with 5 recipes 3) User clicks on the first recipe to see details 4) User rates it 5 stars. Help me create a bulletproof demo setup.",
+      "expected_output": "A demo/ folder with: mock server serving static JSON fixtures for search and rating endpoints, realistic recipe data in fixtures, patched Vue frontend, package.json, and README. No streaming needed.",
+      "files": [],
+      "assertions": [
+        {"name": "has-server-js", "description": "Output includes a server.js or equivalent mock server file"},
+        {"name": "has-demo-config", "description": "Output includes a demo-config.json with structured step definitions"},
+        {"name": "has-search-fixture", "description": "Output includes a JSON fixture for recipe search with 5 recipes"},
+        {"name": "has-rating-fixture", "description": "Output includes a JSON fixture for the rating endpoint"},
+        {"name": "has-package-json", "description": "Output includes a package.json with a start script"},
+        {"name": "has-readme", "description": "Output includes a README.md with run instructions"},
+        {"name": "no-streaming-used", "description": "All endpoints use static/JSON response type (no SSE)"},
+        {"name": "realistic-recipe-data", "description": "Recipe fixtures contain realistic data, not placeholders"},
+        {"name": "correct-endpoint-methods", "description": "Config maps GET for search and POST for rating"}
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "We built a real-time code review tool with SvelteKit for our hackathon project. It has a mix of endpoints: POST /api/analyze sends code and gets back an SSE stream of analysis comments using the Anthropic format, and there's also a WebSocket connection at /ws for live collaboration cursors. Demo flow: 1) User pastes a Python function into the editor 2) AI streams back 3 code review comments one at a time 3) A second user's cursor appears moving through the code (via WebSocket) 4) User clicks 'Apply suggestion' on the first comment and the code updates. I need a demo/ folder that handles both the streaming analysis and the WebSocket stuff.",
+      "expected_output": "A demo/ folder with: mock server handling both Anthropic-format SSE streaming AND WebSocket message replay, fixtures for the streaming analysis and WebSocket cursor events, patched SvelteKit frontend, ws package in dependencies, and comprehensive README.",
+      "files": [],
+      "assertions": [
+        {"name": "has-server-js", "description": "Output includes a server.js or equivalent mock server file"},
+        {"name": "has-demo-config", "description": "Output includes a demo-config.json with structured step definitions"},
+        {"name": "has-streaming-fixture", "description": "Output includes a text fixture for SSE streaming code review comments"},
+        {"name": "has-websocket-fixture", "description": "Output includes a JSON fixture for WebSocket cursor messages"},
+        {"name": "has-package-json", "description": "Output includes a package.json with a start script"},
+        {"name": "has-ws-dependency", "description": "package.json includes 'ws' in dependencies"},
+        {"name": "has-readme", "description": "Output includes a README.md with run instructions"},
+        {"name": "anthropic-format-streaming", "description": "Server or config specifies Anthropic-compatible SSE format"},
+        {"name": "both-protocols-supported", "description": "Server handles both HTTP (SSE) and WebSocket simultaneously"},
+        {"name": "realistic-review-content", "description": "Streaming fixture contains realistic code review comments"}
+      ]
+    }
+  ]
+}
